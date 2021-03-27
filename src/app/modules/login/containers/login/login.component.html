@@ -1,0 +1,11 @@
+<div class="login-page-content">
+  <mat-card class="login-card">
+    <app-logo></app-logo>
+    <app-login-form
+      *ngIf="!editMode"
+      (onChangeToRegisterForm)="setEditMode($event)"
+      (onFormSubmitted)="formLoginSubmitted($event)"
+    ></app-login-form>
+    <app-register-form *ngIf="editMode"></app-register-form>
+  </mat-card>
+</div>

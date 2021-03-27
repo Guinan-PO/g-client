@@ -1,0 +1,17 @@
+.login-page-content {
+  width: 100%;
+  height: 100%;
+}
+
+.login-page-content, .login-card{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-card {
+  flex-direction: column;
+  height: 100%;
+  padding: 0 4rem;
+}
+
