@@ -1,0 +1,20 @@
+<form [formGroup]="_registerForm" (ngSubmit)="submit()">
+  <app-input-text
+    class="input-email"
+    type="email"
+    [control]="_registerForm.controls.email"
+    label="Email"
+    isOutline="true"
+  ></app-input-text>
+  <app-input-text
+    type="password"
+    [control]="_registerForm.controls.password"
+    label="Senha"
+    isOutline="true"
+    hint="A senha deve ter no mínimo 6 caracteres"
+  ></app-input-text>
+  <div class="actionsButtons">
+    <button mat-raised-button color="warn">Cancelar</button>
+    <button mat-raised-button color="green">Entrar</button>
+  </div>
+</form>

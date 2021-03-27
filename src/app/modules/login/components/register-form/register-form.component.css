@@ -1,0 +1,26 @@
+form {
+  padding: 1rem;
+}
+
+.actionsButtons {
+  margin-top: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.actionsButtons button {
+  margin-top: 0.8rem;
+}
+
+
+.mat-button.mat-green {
+  color: #6ce200;
+}
+
+.mat-raised-button.mat-green, .mat-flat-button.mat-green{
+  background-color: #6ce200;
+  color: black;
+  padding-right: 1.5rem;
+  padding-left: 1.5rem;
+}
