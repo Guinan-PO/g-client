@@ -23,7 +23,7 @@ export class AuthenticationService {
 
   constructor(private httpClient: HttpClient) {
     this.userSource$ = new BehaviorSubject<User>(
-      JSON.parse(localStorage.getItem('guinan-user'))
+      JSON.parse(localStorage.getItem(environment.localStorage.user))
     );
     this.user$ = this.userSource$.asObservable();
   }
@@ -39,7 +39,10 @@ export class AuthenticationService {
       .pipe(
         map((response) => {
           response.user.token = response.token;
-          localStorage.setItem('user', JSON.stringify(response));
+          localStorage.setItem(
+            environment.localStorage.user,
+            JSON.stringify(response)
+          );
           this.userSource$.next(response.user);
           return response.user;
         })
@@ -47,7 +50,7 @@ export class AuthenticationService {
   }
 
   public logout(): void {
-    localStorage.removeItem('user');
+    localStorage.removeItem(environment.localStorage.user);
     this.userSource$.next(null);
   }
 }
