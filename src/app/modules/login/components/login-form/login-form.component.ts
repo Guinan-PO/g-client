@@ -5,7 +5,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
-  styleUrls: ['./login-form.component.css']
+  styleUrls: ['../formsStyle.css']
 })
 export class LoginFormComponent implements OnInit {
   @Output() onFormSubmitted: EventEmitter<FormLogin> = new EventEmitter();
@@ -31,8 +31,6 @@ export class LoginFormComponent implements OnInit {
   }
 
   public setEditMode(state: boolean) {
-    console.log('aaaaaaaaaa');
-
     this.onChangeToRegisterForm.emit(state);
   }
 }
