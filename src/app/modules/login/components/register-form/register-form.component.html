@@ -20,10 +20,15 @@
   ></app-input-text>
   <div class="actionsButtons">
     <div class="registerButtons">
-      <button mat-raised-button color="warn" (click)="setEditMode(false)">
+      <button
+        mat-raised-button
+        type="button"
+        color="warn"
+        (click)="setEditMode(false)"
+      >
         Cancelar
       </button>
-      <button mat-raised-button color="primary">Entrar</button>
+      <button mat-raised-button type="submit" color="primary">Entrar</button>
     </div>
   </div>
 </form>
