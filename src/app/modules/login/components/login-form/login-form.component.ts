@@ -1,5 +1,5 @@
 import { FormLogin } from './../../../../shared/Models/FormLogin';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -10,6 +10,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class LoginFormComponent implements OnInit {
   @Output() onFormSubmitted: EventEmitter<FormLogin> = new EventEmitter();
   @Output() onChangeToRegisterForm: EventEmitter<boolean> = new EventEmitter();
+  @Input() userEmail: string;
 
   public _loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -21,7 +22,9 @@ export class LoginFormComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this._loginForm.controls.email.setValue(this.userEmail);
+  }
 
   public submit() {
     this._loginForm.markAllAsTouched();
