@@ -1,3 +1,4 @@
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -16,7 +17,8 @@ import { RegisterFormComponent } from './components/register-form/register-form.
     FormsModule,
     ReactiveFormsModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatProgressBarModule
   ],
   exports: [LoginComponent]
 })
