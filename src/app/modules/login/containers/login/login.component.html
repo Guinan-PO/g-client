@@ -1,3 +1,4 @@
+<mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
 <div class="login-page-content">
   <mat-card class="login-card">
     <app-logo></app-logo>
@@ -5,11 +6,13 @@
       *ngIf="!editMode"
       (onChangeToRegisterForm)="setEditMode($event)"
       (onFormSubmitted)="formLoginSubmitted($event)"
+      [userEmail]="userEmail"
     ></app-login-form>
     <app-register-form
       *ngIf="editMode"
       (onChangeToRegisterForm)="setEditMode($event)"
-      (onChangeToRegisterForm)="formRegisterSubmitted($event)"
+      (onFormSubmitted)="formRegisterSubmitted($event)"
     ></app-register-form>
   </mat-card>
 </div>
+<div *ngIf="_user$ | async"></div>
