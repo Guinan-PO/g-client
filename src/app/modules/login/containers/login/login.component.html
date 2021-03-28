@@ -6,6 +6,10 @@
       (onChangeToRegisterForm)="setEditMode($event)"
       (onFormSubmitted)="formLoginSubmitted($event)"
     ></app-login-form>
-    <app-register-form *ngIf="editMode"></app-register-form>
+    <app-register-form
+      *ngIf="editMode"
+      (onChangeToRegisterForm)="setEditMode($event)"
+      (onChangeToRegisterForm)="formRegisterSubmitted($event)"
+    ></app-register-form>
   </mat-card>
 </div>

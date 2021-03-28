@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormLogin } from 'src/app/shared/Models/FormLogin';
+import { User } from 'src/app/shared/Models/User';
 
 @Component({
   selector: 'app-login',
@@ -18,4 +19,6 @@ export class LoginComponent implements OnInit {
   }
 
   public formLoginSubmitted(formObj: FormLogin) {}
+
+  public formRegisterSubmitted(user: User) {}
 }
