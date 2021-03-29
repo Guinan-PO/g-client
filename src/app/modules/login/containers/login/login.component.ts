@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+
 import { FormLogin } from 'src/app/shared/Models/FormLogin';
 import { User } from 'src/app/shared/Models/User';
-import { environment } from './../../../../../environments/environment';
+import { AuthenticationService } from './../../../../core/services/authentication/authentication.service';
 import { UsersService } from './../../../../core/services/users/users.service';
 
 @Component({
@@ -14,15 +17,28 @@ import { UsersService } from './../../../../core/services/users/users.service';
 export class LoginComponent implements OnInit {
   public editMode: boolean = false;
   public _user$: Observable<User>;
+  public _loginForm$: Observable<any>;
 
   public userEmail: string;
   public isLoading = false;
 
-  constructor(private userService: UsersService) {}
+  constructor(
+    private userService: UsersService,
+    private authService: AuthenticationService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {}
 
-  public formLoginSubmitted(formObj: FormLogin) {}
+  public formLoginSubmitted({ email, password }: FormLogin) {
+    this.isLoading = true;
+    this._user$ = this.authService.login(email, password).pipe(
+      tap(() => {
+        this.isLoading = false;
+        this.router.navigateByUrl('/');
+      })
+    );
+  }
 
   public formRegisterSubmitted(user: User) {
     this.isLoading = true;
@@ -38,9 +54,4 @@ export class LoginComponent implements OnInit {
   public setEditMode(state: boolean) {
     this.editMode = state;
   }
-
-  private setLocalStorage = (user: User): void => {
-    console.log('setLocalStorage chamado');
-    localStorage.setItem(environment.localStorage.user, JSON.stringify(user));
-  };
 }
