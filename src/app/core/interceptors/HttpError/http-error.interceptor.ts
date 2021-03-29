@@ -40,7 +40,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
             }
           });
 
-          this.dialog.afterAllClosed.pipe(tap((_) => location.reload()));
+          this.dialog.afterAllClosed.subscribe((_) => location.reload());
           return next.handle(request);
         }
 
