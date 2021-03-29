@@ -26,12 +26,8 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (this.authenticationService.user) return true;
-
-    // return this.router.parseUrl('/login');
-
-    // not logged in so redirect to login page with the return url
-    this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
-    return false;
+    return this.authenticationService.user
+      ? true
+      : this.router.parseUrl('/login');
   }
 }
