@@ -1,0 +1,36 @@
+.header, .buttons-section, .logout-section {
+  display: flex;
+  align-items: center;
+  height: auto;
+  min-height: 4.5rem;
+  flex-wrap: wrap;
+}
+
+.header .logo {
+  margin: 0.6rem 0px;
+}
+
+.logout-section button {
+  margin-right: 0.1rem;
+}
+
+.logout-section button mat-icon {
+  padding-right: 0.5rem;
+}
+
+.header {
+  justify-content: space-between;
+}
+
+.buttons-section img {
+  cursor: pointer;
+  margin-right: 1.5rem;
+}
+
+.buttons-section button {
+  margin-right: 0.5rem;
+}
+
+.buttons-section button {
+  border-radius: 20px;
+}

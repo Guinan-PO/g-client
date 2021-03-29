@@ -1,0 +1,24 @@
+<mat-toolbar class="header">
+  <div class="buttons-section">
+    <img
+      ondragstart="return false"
+      [src]="logoSource"
+      alt="guinan-logo"
+      width="150"
+      height="50"
+      (click)="navigateToUrl()"
+    />
+    <button mat-button type="button" (click)="navigateToUrl('/boards')">
+      Quadros
+    </button>
+    <button mat-button type="button" (click)="navigateToUrl('/boards')">
+      Atividade
+    </button>
+    <button mat-button type="button" (click)="navigateToUrl('/boards')">
+      Tags
+    </button>
+  </div>
+  <div class="logout-section">
+    <button mat-stroked-button><mat-icon>logout</mat-icon>Logout</button>
+  </div>
+</mat-toolbar>
