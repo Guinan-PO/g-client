@@ -1,10 +1,12 @@
-import { ResponseAuth } from './../../../shared/Models/Responses/ResponseAuth';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+
 import { User } from 'src/app/shared/Models/User';
 import { environment } from 'src/environments/environment';
+import { ResponseAuth } from './../../../shared/Models/Responses/ResponseAuth';
 
 @Injectable({
   providedIn: 'root'
@@ -28,21 +30,18 @@ export class AuthenticationService {
     this.user$ = this.userSource$.asObservable();
   }
 
-  public login(username: string, password: string): Observable<User> {
-    if (!username || !password) throw new Error('[login] no params');
+  public login(email: string, password: string): Observable<User> {
+    if (!email || !password) throw new Error('[login] no params');
 
     return this.httpClient
       .post<ResponseAuth>(`${environment.apiUrl}/tokens`, {
-        username,
+        email,
         password
       })
       .pipe(
         map((response) => {
           response.user.token = response.token;
-          localStorage.setItem(
-            environment.localStorage.user,
-            JSON.stringify(response)
-          );
+          this.setLocalStorage(response);
           this.userSource$.next(response.user);
           return response.user;
         })
@@ -53,4 +52,8 @@ export class AuthenticationService {
     localStorage.removeItem(environment.localStorage.user);
     this.userSource$.next(null);
   }
+
+  private setLocalStorage = (data: { token: string; user: User }): void => {
+    localStorage.setItem(environment.localStorage.user, JSON.stringify(data));
+  };
 }
