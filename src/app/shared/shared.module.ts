@@ -7,17 +7,32 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { LogoComponent } from './components/logo/logo.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ModalErrorComponent } from './components/modal-error/modal-error.component';
+import { HeaderComponent } from './components/header/header.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
-  declarations: [InputTextComponent, LogoComponent, ModalErrorComponent],
+  declarations: [
+    InputTextComponent,
+    LogoComponent,
+    ModalErrorComponent,
+    HeaderComponent
+  ],
   imports: [
     CommonModule,
     MatInputModule,
     ReactiveFormsModule,
     FormsModule,
     MatDialogModule,
-    MatButtonModule
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule
   ],
-  exports: [InputTextComponent, LogoComponent]
+  exports: [
+    InputTextComponent,
+    LogoComponent,
+    ModalErrorComponent,
+    HeaderComponent
+  ]
 })
-export class SharedModuleModule {}
+export class SharedModule {}
