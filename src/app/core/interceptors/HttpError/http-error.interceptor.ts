@@ -1,4 +1,4 @@
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Injectable } from '@angular/core';
 import {
   HttpRequest,
@@ -26,22 +26,24 @@ export class HttpErrorInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       catchError((err) => {
         if (err instanceof HttpErrorResponse) {
-          let errorMessage = err.error.errors.toString();
+          const errorMessage =
+            err.status === 401
+              ? 'Usuário não autenticado'
+              : err.error.errors.toString();
 
-          if (err.status === 401) {
-            this.authenticationService.logout();
-            errorMessage = 'Usuário não autenticado';
-          }
-
-          this.dialog.open(ModalErrorComponent, {
+          const dialogRef = this.dialog.open(ModalErrorComponent, {
             data: {
               title: 'Houve um erro durante a chamada ao Servidor',
               errorMessage
             }
           });
 
-          this.dialog.afterAllClosed.subscribe((_) => location.reload());
-          return next.handle(request);
+          dialogRef.afterClosed().subscribe((_) => {
+            if (err.status === 401) this.authenticationService.logout();
+            location.reload();
+
+            return next.handle(request);
+          });
         }
 
         console.error('An error occurred:', err.error.message);

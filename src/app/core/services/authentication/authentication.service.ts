@@ -51,6 +51,7 @@ export class AuthenticationService {
   public logout(): void {
     localStorage.removeItem(environment.localStorage.user);
     this.userSource$.next(null);
+    location.reload();
   }
 
   private setLocalStorage = (data: { token: string; user: User }): void => {
