@@ -1,0 +1,31 @@
+<div class="situation-container">
+  <mat-accordion *ngFor="let situation of situationData$ | async">
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header class="situation-header">
+        <mat-panel-title>
+          <mat-icon>{{ situation.icon || 'list' }}</mat-icon>
+          {{ situation.name }}
+          <!-- <p style="margin-left: 8px">{{ tasks$.length }} tasks</p> -->
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div class="accordion-content" *ngIf="situation.tasks | async as tasks">
+        <div
+          class="list"
+          cdkDropList
+          [cdkDropListData]="tasks"
+          (cdkDropListDropped)="drop($event)"
+        >
+          <div class="box" *ngFor="let task of tasks" cdkDrag>
+            {{ task.title }}
+          </div>
+        </div>
+      </div>
+
+      <p>This is the primary content of the panel.</p>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
+<!-- [cdkDropListData]="listData$ | async" -->
+
+<!-- <div class="box" *ngFor="let item of listData$ | async" cdkDrag></div> -->
