@@ -9,16 +9,25 @@
       (click)="navigateToUrl()"
     />
     <button mat-button type="button" (click)="navigateToUrl('/boards')">
-      Quadros
-    </button>
-    <button mat-button type="button" (click)="navigateToUrl('/boards')">
       Atividade
     </button>
     <button mat-button type="button" (click)="navigateToUrl('/boards')">
-      Tags
+      Categorias
+    </button>
+    <button mat-button type="button" (click)="navigateToUrl('/boards')">
+      Situações
     </button>
   </div>
+
   <div class="logout-section">
-    <button mat-stroked-button><mat-icon>logout</mat-icon>Logout</button>
+    <button mat-button [matMenuTriggerFor]="menu" class="user-profile-pic">
+      <img [src]="profilePicInput" alt="profile picture" />
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item><mat-icon>account_box</mat-icon>Perfil</button>
+      <button mat-menu-item type="button" (click)="logout()">
+        <mat-icon>logout</mat-icon>Logout
+      </button>
+    </mat-menu>
   </div>
 </mat-toolbar>

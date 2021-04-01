@@ -34,3 +34,11 @@
 .buttons-section button {
   border-radius: 20px;
 }
+
+.user-profile-pic img {
+  background-color: #ddd;
+  border-radius: 100%;
+  height: 45px;
+  object-fit: cover;
+  width: 45px;
+}
