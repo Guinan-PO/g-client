@@ -10,6 +10,8 @@ import { ModalErrorComponent } from './components/modal-error/modal-error.compon
 import { HeaderComponent } from './components/header/header.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { MatIconModule } from '@angular/material/icon';
     MatDialogModule,
     MatToolbarModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatCardModule,
+    MatMenuModule
   ],
   exports: [
     InputTextComponent,
