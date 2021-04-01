@@ -1,0 +1,26 @@
+<form [formGroup]="_boardCreateForm" (ngSubmit)="submit()">
+  <app-input-text
+    type="text"
+    [control]="_boardCreateForm.controls.title"
+    label="titulo*"
+    isOutline="true"
+  ></app-input-text>
+  <app-input-text
+    type="text"
+    [control]="_boardCreateForm.controls.subtitle"
+    label="Sub-titulo"
+    isOutline="true"
+  ></app-input-text>
+  <app-input-text
+    type="text"
+    [control]="_boardCreateForm.controls.description"
+    label="Descrição"
+    isOutline="true"
+  ></app-input-text>
+  <div class="actionsButtons">
+    <div class="registerButtons">
+      <button mat-raised-button type="button" color="warn">Cancelar</button>
+      <button mat-raised-button type="submit" color="primary">Entrar</button>
+    </div>
+  </div>
+</form>
