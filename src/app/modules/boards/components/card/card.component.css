@@ -1,0 +1,18 @@
+.card {
+  min-width: 400px;
+  width: 90%;
+  padding: 1rem;
+}
+
+.card-content {
+  padding: 0 1rem;
+}
+
+.card-actions {
+  justify-content: center;
+  padding: 0.5rem 1rem !important
+}
+
+.card-title {
+  padding-top: 1rem;
+}
