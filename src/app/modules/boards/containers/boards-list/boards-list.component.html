@@ -1,0 +1,47 @@
+<div class="list-content">
+  <mat-tab-group
+    [selectedIndex]="selectedTabIndex"
+    (selectedTabChange)="loadSituations($event)"
+  >
+    <mat-tab *ngFor="let category of _categories$ | async" class="tab-content">
+      <ng-template mat-tab-label>
+        <mat-icon class="tab-icon">{{ category.icon || 'list' }}</mat-icon>
+        {{ category.name_category }}
+      </ng-template>
+
+      <div class="filters">
+        <mat-form-field class="filter-text" appearance="outline">
+          <mat-label>Pesquisar por Task</mat-label>
+          <span matPrefix><mat-icon>search</mat-icon></span>
+          <input
+            matInput
+            type="text"
+            [formControl]="taskSearchInput"
+            placeholder="Insira o nome da task"
+          />
+        </mat-form-field>
+        <button mat-flat-button color="primary">Abrir Situações</button>
+        <button mat-flat-button color="primary">Fechar Situações</button>
+      </div>
+
+      <div class="situationGroup" cdkDropListGroup>
+        <app-situation-container
+          [situationData$]="category.situations$"
+        ></app-situation-container>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+
+<button
+  class="cadastroButton"
+  mat-fab
+  color="primary"
+  aria-label="Botão de adicionar tasks"
+  (click)="createBoardBtn()"
+  type="button"
+>
+  <mat-icon>add</mat-icon>
+</button>
+<div *ngIf="__categories$ | async"></div>
+<div *ngIf="_situations$ | async"></div>

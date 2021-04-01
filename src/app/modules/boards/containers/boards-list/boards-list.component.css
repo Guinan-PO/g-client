@@ -1,0 +1,71 @@
+.list-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.title {
+  padding: 0 2rem;
+  padding-top: 2rem;
+  color: #fff;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 30px;
+  font-weight: 300;
+  line-height: 32px;
+  margin: 0;
+}
+.tab-content {
+  height: 100%;
+}
+
+.filters {
+  padding: 1.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.filters button {
+  margin-left: 1rem;
+}
+
+.filter-text {
+  margin-top: 1rem;
+  width: 50%;
+  align-items: center;
+}
+
+.filter-text span mat-icon {
+  margin-right: 0.5rem;
+}
+
+.tab-icon {
+  margin-right: 0.5rem;
+}
+
+.situationGroup {
+  padding: 2rem 0;
+}
+
+.list-content app-card {
+  padding: 0rem 0rem;
+  width: 100%;
+}
+
+.list-content mat-tab-group {
+  height: 100%;
+  width: 100%;
+}
+
+.cadastroButton {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 40px;
+  right: 40px;
+  border-radius: 50px;
+  text-align: center;
+  font-size: 30px;
+  box-shadow: 1px 1px 2px #888;
+  z-index: 1000;
+}
