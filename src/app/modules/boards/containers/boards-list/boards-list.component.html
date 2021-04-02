@@ -20,13 +20,12 @@
             placeholder="Insira o nome da task"
           />
         </mat-form-field>
-        <button mat-flat-button color="primary">Abrir Situações</button>
-        <button mat-flat-button color="primary">Fechar Situações</button>
       </div>
 
       <div class="situationGroup" cdkDropListGroup>
         <app-situation-container
           [situationData$]="category.situations$"
+          (onLoadMoreTasks)="loadMoreTask($event)"
         ></app-situation-container>
       </div>
     </mat-tab>
@@ -44,4 +43,3 @@
   <mat-icon>add</mat-icon>
 </button>
 <div *ngIf="__categories$ | async"></div>
-<div *ngIf="_situations$ | async"></div>
