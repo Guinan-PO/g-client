@@ -35,14 +35,7 @@ export class CategoriesService {
 
     return this.httpClient
       .get<Category[]>(`${environment.apiUrl}/categories`, optionsHttp)
-      .pipe(
-        tap((categories) =>
-          this.categoriesSource$.next([
-            ...this.categoriesSource$.value,
-            ...categories
-          ])
-        )
-      );
+      .pipe(tap((categories) => this.categoriesSource$.next(categories)));
   }
 
   private setPaginatorParams(page: number, pageSize: number): { params?: any } {
