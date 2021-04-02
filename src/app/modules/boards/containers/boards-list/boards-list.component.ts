@@ -1,14 +1,15 @@
-import { TasksService } from './../../../../core/services/tasks/tasks.service';
-import { SituationsService } from './../../../../core/services/situations/situations.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { concatMap, map, mergeMap, tap } from 'rxjs/operators';
+import { mergeMap, tap } from 'rxjs/operators';
+
 import { CategoriesService } from 'src/app/core/services/categories/categories.service';
-import Category from 'src/app/shared/Models/Category';
+import { Category } from 'src/app/shared/Models/Category';
 import { Situation } from 'src/app/shared/Models/Situation';
 import { Task } from 'src/app/shared/Models/Task';
+import { SituationsService } from './../../../../core/services/situations/situations.service';
+import { TasksService } from './../../../../core/services/tasks/tasks.service';
 
 @Component({
   selector: 'app-boards-list',
@@ -23,7 +24,6 @@ export class BoardsListComponent implements OnInit {
   public _categories$ = this.categoriesService.categories$;
   public __categories$: Observable<Category[]> = new Observable();
   public __tasks$: Observable<Task[]> = new Observable();
-  // public __situations$: Observable<Situation[]> = new Observable();
 
   public category: Category;
 
@@ -43,24 +43,15 @@ export class BoardsListComponent implements OnInit {
   }
 
   public loadSituations({ index }): void {
-    console.log('loadSituations called. Event: ', index);
-
     this.category = this.categoriesService.categories[index];
 
-    if (!!this.category.situations$) {
-      console.log('retornando pq ja existe');
-      return;
-    }
+    if (!!this.category.situations$) return;
 
     this.category.situations$ = this.loadInitialSituations(
       this.category.id
     ).pipe(
       tap((situations) => {
-        console.log('situations situations situations');
-        situations.map((s) => {
-          console.log('aaaaaaaaaaaaaaaaaa', s);
-          s.tasks = this.loadInitialTasks(s.id);
-        });
+        situations.map((s) => (s.tasks = this.loadInitialTasks(s.id)));
       })
     );
   }
@@ -86,9 +77,8 @@ export class BoardsListComponent implements OnInit {
   private loadInitialCategories(): Observable<Category[]> | void {
     if (this.categoriesService.categories.length) return;
 
-    this.__categories$ = this.categoriesService.getCategories(0, 15).pipe(
-      tap((c) => console.log('carregou as categorias:', c)),
-      mergeMap(() => this.categoriesService.categories$)
-    );
+    this.__categories$ = this.categoriesService
+      .getCategories(0, 15)
+      .pipe(mergeMap(() => this.categoriesService.categories$));
   }
 }
