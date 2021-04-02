@@ -2,7 +2,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import Category from 'src/app/shared/Models/Category';
+import { Category } from 'src/app/shared/Models/Category';
 import { tap } from 'rxjs/operators';
 
 @Injectable({

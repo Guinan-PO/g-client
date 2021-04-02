@@ -1,7 +1,7 @@
 import { Situation } from './Situation';
 import { Observable } from 'rxjs';
 
-export default interface Category {
+export interface Category {
   id?: number;
   name_category: string;
   id_user?: number;

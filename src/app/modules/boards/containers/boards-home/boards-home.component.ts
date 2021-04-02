@@ -1,8 +1,6 @@
-import { CategoriesService } from '../../../../core/services/categories/categories.service';
-import { LoadingService } from './../../services/loading/loading.service';
-import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-import Category from 'src/app/shared/Models/Category';
+import { Observable } from 'rxjs';
+import { LoadingService } from './../../services/loading/loading.service';
 
 @Component({
   selector: 'app-boards-home',
