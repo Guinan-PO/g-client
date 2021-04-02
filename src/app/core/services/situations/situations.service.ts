@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { Situation } from 'src/app/shared/Models/Situation';
 import { environment } from 'src/environments/environment';
 
@@ -8,11 +9,13 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class SituationsService {
+  private actualPage: number = 0;
+
   constructor(private httpClient: HttpClient) {}
 
   public getSituations(
     category_id: number,
-    page?: number,
+    page: number = this.actualPage,
     pageSize?: number
   ): Observable<Situation[]> {
     const optionsHttp = this.setPaginatorParams(page, pageSize, category_id);
