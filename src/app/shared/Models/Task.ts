@@ -4,5 +4,5 @@ export interface Task {
   description?: string;
   due_date?: Date;
   id_situation: number;
-  id_categoria: number;
+  id_category: number;
 }
